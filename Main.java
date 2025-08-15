@@ -1,6 +1,6 @@
 //task manager 
 import java.util.*;
-ArrayList<Task> taskList=new ArrayList<>();
+
 class Task
 {
     private int taskId;
@@ -8,7 +8,7 @@ class Task
     private String priority;
     private String deadLine;
     private String status;
-    task(int taskId,String taskName,String priority, String deadLine,String status)
+    public Task(int taskId,String taskName,String priority, String deadLine,String status)
     {
         this.taskId=taskId;
         this.taskName=taskName;
@@ -27,7 +27,7 @@ class Task
     }
     public void setTaskName(String taskName)
     {
-        this.taskname=taskname;
+        this.taskName=taskName;
     }
     public String getTaskName()
     {
@@ -42,13 +42,13 @@ class Task
         return priority;
     }
 
-     public void setDate(String date)
+     public void setDeadLine(String deadLine)
     {
-        this.date=date;
+        this.deadLine=deadLine;
     }
     public String getDate()
     {
-        return Date;
+        return deadLine;
     }
 
      public void setStatus(String status)
@@ -68,10 +68,11 @@ class Task
 class TaskOperations
 {
     
-    public void addTask()
+    public void addTask(Scanner sc, ArrayList<Task> TaskList)
     {
         System.out.println("Enter the Task Id:");
         int taskId=sc.nextInt();
+        sc.nextLine();
         System.out.println("Enter the Task Name:");
         String taskName=sc.nextLine();
         System.out.println("Enter the Task Priority:");
@@ -81,15 +82,16 @@ class TaskOperations
         System.out.println("Enter the Task Status:");
         String status=sc.nextLine();
         
+        
         Task task=new Task(taskId,taskName,priority,deadline,status);
         
         TaskList.add(task);
         
     }
     
-    public void listTask()
+    public void listTask(ArrayList<Task> taskList)
     {
-        for(task t: taskList)
+        for(Task t: taskList)
         {
             System.out.println("Task Id:"+ t.getTaskId());
             System.out.println("Task Name:"+ t.getTaskName());
@@ -99,12 +101,65 @@ class TaskOperations
             
         }
     }
+    public void updateTask(Scanner sc, ArrayList<Task> taskList)
+    {
+        System.out.println("Choose the Id to Update");
+        int id=sc.nextInt();
+        sc.nextLine();
+        System.out.println("1. Update Name\n 2. Update Priority\n 3. Update DeadLine\4. Update Status");
+        
+        //have to take the object from the ArrayList
+        Task obj=null;
+        for(int i=0;i<taskList.size();i++)
+        {
+            if(taskList.get(i).getTaskId()==id)
+            {
+               obj=taskList.get(i);
+               break;
+            }
+        }
+        
+        if(obj!=null)
+        {
+        
+            switch(id)
+            {
+                case 1:
+                    System.out.println("Enter the New Name:");
+                    String updateName=sc.nextLine();
+                    obj.setTaskName(updateName);
+                    break;
+                    
+                case 2:
+                    System.out.println("Enter the New Priority:");
+                    String updatePriority=sc.nextLine();
+                    obj.setPriority(updatePriority);
+                    break;
+                case 3:
+                    System.out.println("Enter the New DeadLine:");
+                    String updateDeadLine=sc.nextLine();
+                    obj.setDeadLine(updateDeadLine);
+                    break;
+                case 4:
+                    System.out.println("Enter the New Status:");
+                    String updateStatus=sc.nextLine();
+                    obj.setStatus(updateStatus);
+                    break;
+                default:
+                    break;
+                
+            }
+        }
+    }
 }
 public class Main
 {
+    
     public static void main(String args[])
     {
         Scanner sc=new Scanner(System.in);
+        ArrayList<Task> taskList=new ArrayList<Task>();
+        TaskOperations taskOps=new TaskOperations();
         System.out.println("=====Task Manager=====");
         // System.out.println("Choose an option");
         int option=0;
@@ -114,28 +169,28 @@ public class Main
             System.out.println("Choose an option");
             option=sc.nextInt();
             
-            switch(option):
+            switch(option)
             {
                 case 1:
-                    TaskOperations.addTask();
+                    taskOps.addTask(sc,taskList);
                     break;
                 case 2:
-                    updateTask();
+                    taskOps.updateTask(sc,taskList);
                     break;
-                case 3:
-                    deleteTask();
-                    break;
+                // case 3:
+                //     deleteTask();
+                //     break;
                     
                 case 4:
-                    listTask();
+                    taskOps.listTask(taskList);
                     break;
                     
-                case 5:
-                    searchTask();
-                    break
+                // case 5:
+                //     searchTask();
+                //     break
                     
-                case 6:
-                    break;
+                // case 6:
+                //     break;
                     
                 default:
                     break;
