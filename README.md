@@ -1,53 +1,55 @@
-Problem: Task Manager API (Console Version)
+📝 Task Manager (Console Version)
 
-Goal: Build a simple console-based Java program that manages tasks with deadlines, priority, and status.
+A simple menu-driven Java console application to manage tasks with deadlines, priority, and status — all stored in memory. Perfect for learning Java Collections, Enums, Comparators, and basic input validation.
 
-Requirements:
+🚀 Features
 
-Task Details:
+Add Task – Create a new task with unique title, deadline, priority, and status.
 
-ID 
+Update Task – Modify title, priority, deadline, or status of an existing task.
 
-Title
+Delete Task – Remove a task by its ID.
 
-Priority (HIGH, MEDIUM, LOW)
-
-Deadline (date in yyyy-MM-dd format)
-
-Status (PENDING, IN_PROGRESS, COMPLETED)
-
-Features:
-
-Add Task
-
-Update Task (change title, priority, deadline, or status)
-
-Delete Task by ID
-
-List All Tasks sorted by:
+List All Tasks – Sorted by:
 
 Nearest deadline first
 
 Then by priority (HIGH > MEDIUM > LOW)
 
-Search Task by title keyword
+Search Task – Find tasks by title keyword.
 
-Constraints:
+📋 Task Details
 
-Use Java Collections (List, Map, or both)
+Each task contains:
 
-Store tasks in memory (no DB)
+ID (integer, auto-generated or user-provided)
 
-Validate inputs (e.g., date format, priority values)
+Title (unique, non-empty)
 
-Avoid duplicate titles
+Priority – HIGH, MEDIUM, or LOW (enum)
 
-Keep it menu-driven so user can choose options repeatedly
+Deadline – date in yyyy-MM-dd format
 
-Bonus points if you:
+Status – PENDING, IN_PROGRESS, or COMPLETED (enum)
 
-Use Enums for Priority and Status
+🛠 Tech Used
 
-Implement sorting using Comparator
+Java Collections (List, Map)
 
-Handle invalid inputs gracefully (loop until valid)
+Enums for Priority & Status
+
+Custom Comparator for sorting
+
+Scanner for console input
+
+Date validation using LocalDate
+
+✅ Input Validation
+
+Ensures date is in correct format (yyyy-MM-dd).
+
+Restricts priority and status to predefined enum values.
+
+Avoids duplicate titles.
+
+Keeps asking until valid input is entered.
